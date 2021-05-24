@@ -31,9 +31,18 @@
                     todos: [],
                 }
             }
+
+            addTodo() {
+                const text = prompt("TODO text please!")
+                this.setState({
+                    todos: [...this.state.todos, {text: text}]
+                })
+            }
+
             render() {
                 return (
                     <div style={styles}>
+                        <button>Add Todo</button>
                         <ul>
                             {this.state.todos.map(todo => <Todo todo={todo} />)}
                         </ul>
