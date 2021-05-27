@@ -23,7 +23,7 @@
         // Component that just shows a checkbox, delete button and a todo text
         const Todo = props => (
             <li>
-                <input type="checkbox" />
+                <input type="checkbox" checked={props.todo.checked} onChange={props.onToggle}/>
                 <button onClick={props.onDelete}>delete</button>
                 <span>{props.todo.text}</span>
             </li>
@@ -59,12 +59,26 @@
                 })
             }
 
+            toggleTodo(id) {
+                this.setState({
+                    todos: this.state.todos.map(todo => {
+                        if (todo.id !== id) return todo
+                        return {
+                            id: todo.id,
+                            text: todo.text,
+                            checked: !todo.checked,
+                        }
+                    })
+                })
+            }
+
             render() {
                 return (
                     <div style={styles}>
                         <button onClick={() => this.addTodo()}>Add Todo</button>
                         <ul>
                             {this.state.todos.map(todo => <Todo 
+                                onToggle={() => this.toggleTodo(todo.id)}
                                 onDelete={() => this.removeTodo(todo.id)}
                                 todo={todo} 
                                 />
