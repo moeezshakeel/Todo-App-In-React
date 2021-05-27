@@ -10,14 +10,17 @@
       <div id="app"></div>
       <script type="text/babel" >
 
+        // Styles for app
         const styles = {
             fontFamily: 'sans-serif',
             textAlign: 'center',
             fontSize: '50',
         };
 
+        // Unique id for todos
         let id = 0;
 
+        // Component that just shows a checkbox, delete button and a todo text
         const Todo = props => (
             <li>
                 <input type="checkbox" />
@@ -25,7 +28,8 @@
                 <span>{props.todo.text}</span>
             </li>
         )
-
+        
+        // Class Called App that extending React compnent
         class App extends React.Component {
             constructor() {
                 super()
@@ -33,9 +37,13 @@
                     todos: [],
                 }
             }
-
+            
+            
+            // A method that just add todo
             addTodo() {
+                // Prompting from the uesr Todo
                 const text = prompt("TODO text please!")
+                // Updating the state
                 this.setState({
                     todos: [
                         ...this.state.todos, 
@@ -44,6 +52,7 @@
                 })
             }
 
+            // A method that will remove the todo, when user click on delete button
             removeTodo(id) {
                 this.setState({
                     todos: this.state.todos.filter(todo => todo.id !== id)
@@ -55,16 +64,19 @@
                     <div style={styles}>
                         <button onClick={() => this.addTodo()}>Add Todo</button>
                         <ul>
-                            {this.state.todos.map(todo => <Todo onDelete={() => this.removeTodo(todo.id)} todo={todo} />)}
+                            {this.state.todos.map(todo => <Todo 
+                                onDelete={() => this.removeTodo(todo.id)}
+                                todo={todo} 
+                                />
+                            )}
                         </ul>
                     </div>
                 )
             }
         }
 
-        let count = 0;
 
-        ReactDOM.render(<App count={count++} />, document.querySelector("#app"));
+        ReactDOM.render(<App />, document.querySelector("#app"));
 
       </script>
     </body>
