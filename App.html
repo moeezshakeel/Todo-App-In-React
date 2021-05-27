@@ -75,6 +75,8 @@
             render() {
                 return (
                     <div style={styles}>
+                        <div>Todo Count: {this.state.todos.length}</div>
+                        <div>Unchecked Todo Count: {this.state.todos.filter(todo => !todo.checked).length}</div>
                         <button onClick={() => this.addTodo()}>Add Todo</button>
                         <ul>
                             {this.state.todos.map(todo => <Todo 
