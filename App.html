@@ -20,7 +20,7 @@
             <li>
                 <input type="checkbox" />
                 <button>delete</button>
-                <span>{props.text}</span>
+                <span>{props.todo.text}</span>
             </li>
         )
 
@@ -42,7 +42,7 @@
             render() {
                 return (
                     <div style={styles}>
-                        <button>Add Todo</button>
+                        <button onClick={() => this.addTodo()}>Add Todo</button>
                         <ul>
                             {this.state.todos.map(todo => <Todo todo={todo} />)}
                         </ul>
