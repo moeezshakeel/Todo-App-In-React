@@ -16,6 +16,8 @@
             fontSize: '50',
         };
 
+        let id = 0;
+
         const Todo = props => (
             <li>
                 <input type="checkbox" />
@@ -35,7 +37,7 @@
             addTodo() {
                 const text = prompt("TODO text please!")
                 this.setState({
-                    todos: [...this.state.todos, {text: text}]
+                    todos: [...this.state.todos, {id: id++, text: text}]
                 })
             }
 
